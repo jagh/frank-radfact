@@ -15,9 +15,9 @@ Explanation
 
 """
 
-from frank_metric.schema import GroundedPhraseEvidenced, EvidencedPhrase, NormalizedBox, OneWayNLIFractions, RadFactScore, SpatialEntailmentStatus
+from frank_metric.schema import GroundedPhraseEvidenced, NormalizedBox, OneWayNLIFractions, RadFactScore
 from frank_metric.box_metrics import compute_box_metrics, PRECISION, RECALL
-from typing import List, Dict, Any
+from typing import List, Dict
 import numpy as np
 
 
@@ -48,7 +48,7 @@ class SimplifiedRadFactMetric:
         entailed_phrases = [p for p in phrases if hasattr(p, "status") and p.status == "entailed"]
         entailed_fraction = len(entailed_phrases) / num_phrases if num_phrases else np.nan
 
-        boxed_phrases = [p for p in phrases if p.boxes]  # Only include phrases with boxes
+        boxed_phrases = [p for p in phrases if p.boxes]
         entailed_boxes = [p for p in boxed_phrases if self._are_boxes_entailed(p.boxes, evidence_boxes)]
         spatial_entailment_boxes = [p for p in entailed_boxes if self._are_boxes_entailed(p.boxes, evidence_boxes)]
 
@@ -83,49 +83,3 @@ class SimplifiedRadFactMetric:
         for study_id in candidates:
             results[study_id] = self.compute_scores(candidates[study_id], references[study_id])
         return results
-
-
-# Example Usage
-if __name__ == "__main__":
-    candidates = {
-        0: [
-            GroundedPhraseEvidenced(
-                text="Cardiac silhouette remains normal in size.",
-                boxes=None,
-                status="entailed",
-                evidence=[]
-            ),
-            GroundedPhraseEvidenced(
-                text="Moderate-sized area of airspace opacity in the left base has improved.",
-                boxes=[NormalizedBox(x_min=0.535, y_min=0.355, x_max=0.865, y_max=0.725)],
-                status="entailed",
-                evidence=[]
-            ),
-        ]
-    }
-
-    references = {
-        0: [
-            GroundedPhraseEvidenced(
-                text="Cardiac silhouette is normal in size.",
-                boxes=None,
-                status="entailed",
-                evidence=[]
-            ),
-            GroundedPhraseEvidenced(
-                text="There are some reticular appearing markings in the bases similar to previous.",
-                boxes=[NormalizedBox(x_min=0.015, y_min=0.475, x_max=0.375, y_max=0.775)],
-                status="entailed",
-                evidence=[]
-            ),
-        ]
-    }
-
-    radfact_metric = SimplifiedRadFactMetric()
-    results = radfact_metric.evaluate(candidates, references)
-
-    for study_id, score in results.items():
-        print(f"Study ID: {study_id}")
-        print(f"Logical F1: {score.logical_f1}")
-        print(f"Spatial F1: {score.spatial_f1}")
-        print(f"Grounding F1: {score.grounding_f1}")
