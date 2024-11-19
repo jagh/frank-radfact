@@ -6,6 +6,3 @@ src/radfact_frank_metrics/__pycache__/*
 data/
 demos/
 enwiki-20230401.db
-
-## FActScore Directories
-src/third_party/FActScore/roberta_stopwords.txt.1
