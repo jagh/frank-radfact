@@ -24,14 +24,6 @@ pip install -r requirements.txt
 ```
 
 
-### Installation of Poetry
-
-Poetry is a tool for dependency management and packaging in Python. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
-
-You can install Poetry using the following command:
-
-
-
 
 ## Installation
 
