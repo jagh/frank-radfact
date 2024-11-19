@@ -1,6 +1,6 @@
 import json
-from frank_metric.simplified_radfact import SimplifiedRadFactMetric
-from frank_metric.schema import GroundedPhraseEvidenced, NormalizedBox
+from src.radfact_frank_metrics.simplified_radfact import SimplifiedRadFactMetric
+from src.radfact_frank_metrics.schema import GroundedPhraseEvidenced, NormalizedBox
 
 
 def load_data(file_path: str):
