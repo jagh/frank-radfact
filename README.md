@@ -30,3 +30,8 @@ pip install -r requirements.txt
 ### Installation of FActScore
 
 FActScore is a submodule of this repository. To install it, run the following commands:
+
+```bash
+pip install --upgrade factscore
+python -m spacy download en_core_web_sm
+```
