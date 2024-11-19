@@ -25,7 +25,7 @@ def parse_phrases(phrases: list):
 
 def main():
     # Load the data
-    json_file = "grounded_reporting_examples.json"  # Replace with your file path
+    json_file = "examples/radfact-reports/grounded_reporting_examples.json"  # Replace with your file path
     data = load_data(json_file)
 
     candidates = {}
