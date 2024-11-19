@@ -1,0 +1,3 @@
+[submodule "src/third-party/FActScore"]
+	path = src/third-party/FActScore
+	url = https://github.com/shmsw25/FActScore.git
