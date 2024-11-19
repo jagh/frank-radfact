@@ -56,12 +56,12 @@ pip install --upgrade factscore
 python -m spacy download en_core_web_sm
 ```
 
-## Download the data
+### Download the data
 ```bash
 python -m factscore.download_data --llama_7B_HF_path "llama-7B"
 ```
 
-## Using huggyllama/llama-7b:
+### Using huggyllama/llama-7b:
 ```bash
 python -m factscore.download_data --llama_7B_HF_path "huggyllama/llama-7b"
 ```
